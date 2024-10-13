@@ -1,0 +1,133 @@
+import java.util.Scanner;
+
+public class SimpleBankingApp {
+
+    // Variable to store the account balance
+    static double balance = 0;
+
+    // Main method
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        boolean exit = false; // Used to track if the user wants to exit the program
+
+        // Display a welcome message
+        System.out.println("Welcome to the Simple Banking Application!");
+
+        // Main loop that keeps running until the user chooses to exit
+        while (!exit) {
+            // Display the menu
+            System.out.println("\nPlease choose an option:");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Exit");
+            
+            // Take the user's choice
+            int choice = scanner.nextInt();
+
+            // Perform action based on user's choice
+            switch (choice) {
+                case 1:
+                    checkBalance(); // Call method to check balance
+                    break;
+                case 2:
+                    deposit(scanner); // Call method to deposit money
+                    break;
+                case 3:
+                    withdraw(scanner); // Call method to withdraw money
+                    break;
+                case 4:
+                    exit = true; // Exit the program
+                    System.out.println("Thank you for using the Simple Banking Application. Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+
+        // Close the scanner
+        scanner.close();
+    }
+
+    // Method to check the current balance
+    public static void checkBalance() {
+        System.out.println("Your current balance is: $" + balance);
+    }
+
+    // Method to deposit money
+    public static void deposit(Scanner scanner) {
+        System.out.println("Enter amount to deposit: ");
+        double amount = scanner.nextDouble();
+
+        if (amount > 0) {
+            balance += amount; // Increase the balance by the deposited amount
+            System.out.println("Successfully deposited $" + amount);
+        } else {
+            System.out.println("Invalid deposit amount. Please try again.");
+        }
+    }
+
+    // Method to withdraw money
+    public static void withdraw(Scanner scanner) {
+        System.out.println("Enter amount to withdraw: ");
+        double amount = scanner.nextDouble();
+
+        if (amount > 0 && amount <= balance) {
+            balance -= amount; // Decrease the balance by the withdrawn amount
+            System.out.println("Successfully withdrew $" + amount);
+        } else if (amount > balance) {
+            System.out.println("Insufficient funds! You cannot withdraw more than your balance.");
+        } else {
+            System.out.println("Invalid withdrawal amount. Please try again.");
+        }
+    }
+}
+
+
+OUTPUT:
+
+Welcome to the Simple Banking Application!
+
+Please choose an option:
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Exit
+2
+Enter amount to deposit: 
+100
+Successfully deposited $100.0
+
+Please choose an option:
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Exit
+1
+Your current balance is: $100.0
+
+Please choose an option:
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Exit
+3
+Enter amount to withdraw: 
+50
+Successfully withdrew $50.0
+
+Please choose an option:
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Exit
+1
+Your current balance is: $50.0
+
+Please choose an option:
+1. Check Balance
+2. Deposit
+3. Withdraw
+4. Exit
+4
+Thank you for using the Simple Banking Application. Goodbye!
